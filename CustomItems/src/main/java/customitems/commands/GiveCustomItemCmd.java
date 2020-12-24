@@ -124,6 +124,89 @@ public class GiveCustomItemCmd implements CommandExecutor {
 
 		} else if (sender instanceof ConsoleCommandSender) {
 
+			if (!(args.length > 2 && cmd.getName().equalsIgnoreCase("givecustomitem"))) {
+				String msg = instance.getConfig().getString("config.messages.command-item-ussage");
+				Bukkit.getConsoleSender().sendMessage(Main.colorize(msg));
+				return true;
+			}
+
+			String key = "";
+			int checker = 0;
+			Player target = Bukkit.getPlayer(args[2]);
+			
+				if (target == null) {
+					String msg = instance.getConfig().getString("config.messages.target-not-exists");
+					msg = msg.replaceAll("%player%", args[2]);
+					Bukkit.getConsoleSender().sendMessage(Main.colorize(msg));
+					return true;
+				}
+			
+
+			for (String string : instance.getConfig().getConfigurationSection("config.items").getKeys(false)) {
+				if (args[0].equalsIgnoreCase(string)) {
+					checker++;
+					key = string;
+				}
+			}
+
+			if (checker != 1) {
+				String msg = instance.getConfig().getString("config.messages.item-not-exist");
+				msg = msg.replaceAll("%item%", args[0]);
+				Bukkit.getConsoleSender().sendMessage(Main.colorize(msg));
+				return true;
+			}
+
+			PlayerInventory tInv = target.getInventory();
+			String itemCustomModelDataStr = (instance.getConfig()
+					.getString("config.items." + key + ".custommodeldata"));
+			int itemCustomModelData = Integer.parseInt(itemCustomModelDataStr);
+			String itemType = instance.getConfig().getString("config.items." + key + ".itemtype");
+			String itemMaterialName = instance.getConfig().getString("config.items." + key + ".itemid").toUpperCase();
+			List<String> lore = instance.getConfig().getStringList("config.items." + key + ".lore");
+			String itemName = instance.getConfig().getString("config.items." + key + ".name");
+			ItemStack item = new ItemStack(Material.valueOf(itemMaterialName), Integer.parseInt(args[1]));
+			ItemMeta meta = item.getItemMeta();
+
+			meta.setCustomModelData(itemCustomModelData);
+
+			// adding displayname
+			if (itemType != null) {
+				meta.setDisplayName(Main.colorize(itemName));
+			}
+			// adding lore
+			if (lore != null) {
+				meta.setLore(Main.colorize(lore));
+			}
+			item.setItemMeta(meta);
+
+			// adding enchantments
+			List<String> enchantList = new ArrayList<String>();
+			for (String str : instance.getConfig().getConfigurationSection("config.items." + key + ".enchantments")
+					.getKeys(false)) {
+				enchantList.add(str);
+			}
+			if (enchantList != null) {
+				for (int j = 0; j < enchantList.size(); j++) {
+					int levelEnchant = Integer.parseInt(instance.getConfig().getString("config.items." + key + ".enchantments." + enchantList.get(j)));
+					String enchant =  enchantList.get(j).toLowerCase(); //toUpperCase();
+					NamespacedKey nm = NamespacedKey.minecraft(enchant);
+					item.addUnsafeEnchantment(Enchantment.getByKey(nm),levelEnchant);
+
+				}
+			}
+			
+		
+
+
+			for (int i = 0; i <= 35; i++) {
+				if (tInv.getItem(i) == null) {
+					tInv.setItem(i, item);
+					return true;
+				}
+			}
+			String noSpaceMsg = instance.getConfig().getString("config.messages.no-disponible-slot");
+			Bukkit.getConsoleSender().sendMessage(Main.colorize(noSpaceMsg));
+
 			return true;
 
 		}
