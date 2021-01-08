@@ -74,7 +74,7 @@ public class GiveCustomItemCmd implements CommandExecutor {
 			String itemCustomModelDataStr = (instance.getConfig()
 					.getString("config.items." + key + ".custommodeldata"));
 			int itemCustomModelData = Integer.parseInt(itemCustomModelDataStr);
-			String itemType = instance.getConfig().getString("config.items." + key + ".itemtype");
+			//String itemType = instance.getConfig().getString("config.items." + key + ".itemtype");
 			String itemMaterialName = instance.getConfig().getString("config.items." + key + ".itemid").toUpperCase();
 			List<String> lore = instance.getConfig().getStringList("config.items." + key + ".lore");
 			String itemName = instance.getConfig().getString("config.items." + key + ".name");
@@ -84,7 +84,7 @@ public class GiveCustomItemCmd implements CommandExecutor {
 			meta.setCustomModelData(itemCustomModelData);
 
 			// adding displayname
-			if (itemType != null) {
+			if (itemName != null) {
 				meta.setDisplayName(Main.colorize(itemName));
 			}
 			// adding lore

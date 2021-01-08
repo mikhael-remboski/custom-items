@@ -5,16 +5,17 @@ import org.bukkit.event.Listener;
 
 import customitems.main.Main;
 
-public class InventoryWeaponGUI implements Listener{
+public class InventoryToolGUI implements Listener {
 	private Main instance;
 
-	public InventoryWeaponGUI(Main instance) {
+	public InventoryToolGUI(Main instance) {
 		this.instance = instance;
 	}
 
 	
 
-	public void openWeaponGui(Player p) {
+	public void openToolGui(Player p) {
+
 	}
 
 }

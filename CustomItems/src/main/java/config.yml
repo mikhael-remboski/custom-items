@@ -10,28 +10,74 @@ config:
             lore: 
                 - "&b&cEspada forjada en jebuslandia" #lore of item
                 - "&4&lCon el sabor a salute"
-            damageadition: "3" #(number for damage adition only weapons)
+            #damageadition: "3" #(number for damage adition only weapons)
               #armoradition: "10" (number for armoradition only armors)
             itemtype: "weapon" #(can be armor, weapon or tools this is for gui)
             itemid: "DIAMOND_SWORD" 
             requirements:
                 titanio: "10" #name of mineral to craft and quantity
-            #funnyenchantments (will be add in next version be carefull 7w7"
+            gui:
+                page: "1"
+                slot: "1"
+            #funnyenchantments (will be add in next version)"
         
           
     minerals:
-        MineralJebus:  #(for command usage for example: /givecustommineral name cuantity player)
-            itemid: "diamond_ingot" 
+        titanio:  
+            itemid: "DIAMOND_ORE" 
             name: "&4&ltitanio" #Name show in game 
             lore: 
                 - "&C&LUn titanio forjado desde francia" #lore for mineral
+                - "chuletina chuletona"
             custommodeldata: "19203" #(custom model data for your resource pack)
-          
+
+    menugui:
+        inventoryname: "&4CustomItems Menu"
+        tool:
+            lore:
+                - "Herramientas exlusivas"
+                - "Se compran con minerales exclusivos"
+            displayname: "Comprar herramientas exlusivas"
+            
+        armor:
+            lore:
+                - "Armaduras exlusivas"
+                - "Se compran con minerales exclusivos"
+            displayname: "Comprar armaduras exlusivas"
+            
+        weapon:
+            lore:
+                - "Armas exlusivas"
+                - "Se compran con minerales exclusivos"
+            displayname: "Comprar armas exlusivas"
         
+        elytra:
+            lore:
+                - "Elytras exlusivas"
+                - "Se compran con minerales exlusivos"
+            displayname: "Comprar elytras exlusivas"
+            
+            
+    armorgui:
+        name: "&4&LCustom armor"
+        nextpageitem: "REDSTONE"
+        nextpagename: "Siguiente Pagina"
+        nextpagelore:
+            - "Pasar a la siguiente pagina"    
+        previouspageitem: "REDSTONE"
+        previouspagename: "Pagina anterior"    
+        previouspagelore: 
+            - "Pasar a la pagina anterior"
+        
+        cost-of-item: "El item cuesta %mineral% x%quantity%"
+
     messages:
+        insufficient-ore: "No tienes ores suficientes"
+        reload-config: "&4&L La configuracion fue reiniciada"
         insuficient-resources: "No tienes recursos suficientes para recibir este item"
         insuficient-permissions: "&4&LNo tienes permisos suficientes para ejecutar este comando"
         item-not-exists: "El item no existe"
+        mineral-not-exists: "El mineral %mineral% no existe"
         no-disponible-slot: "No hay espacio suficiente para realizar esta accion"
         received-item: "Recibiste correctamente el item %item%"
         received-mineral: "Recibiste correctamente el mineral %mineral%"
