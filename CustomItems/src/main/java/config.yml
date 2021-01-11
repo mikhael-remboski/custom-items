@@ -17,14 +17,14 @@ config:
             requirements:
                 titanio: "10" #name of mineral to craft and quantity
             gui:
-                page: "1"
+                page: "2"
                 slot: "1"
             #funnyenchantments (will be add in next version)"
         
           
     minerals:
         titanio:  
-            itemid: "DIAMOND_ORE" 
+            itemid: "DIAMOND" 
             name: "&4&ltitanio" #Name show in game 
             lore: 
                 - "&C&LUn titanio forjado desde francia" #lore for mineral
@@ -68,15 +68,72 @@ config:
         previouspagename: "Pagina anterior"    
         previouspagelore: 
             - "Pasar a la pagina anterior"
+        cost-of-item: "El item cuesta %mineral% x%quantity%"
+        menu-item: "REDSTONE"
+        menu-name: "Ir al menu"
+        menu-lore: 
+            - "ir al menu principal"            
+    
+    weapongui:
+        name: "&4&LCustom weapon"
+        nextpageitem: "REDSTONE"
+        nextpagename: "Siguiente Pagina"
+        nextpagelore:
+            - "Pasar a la siguiente pagina"    
+        previouspageitem: "REDSTONE"
+        previouspagename: "Pagina anterior"    
+        previouspagelore: 
+            - "Pasar a la pagina anterior"
         
         cost-of-item: "El item cuesta %mineral% x%quantity%"
+        menu-item: "REDSTONE"
+        menu-name: "Ir al menu"
+        menu-lore: 
+            - "ir al menu principal"        
+        
+        
+    toolgui:
+        name: "&4&LCustom tool"
+        nextpageitem: "REDSTONE"
+        nextpagename: "Siguiente Pagina"
+        nextpagelore:
+            - "Pasar a la siguiente pagina"    
+        previouspageitem: "REDSTONE"
+        previouspagename: "Pagina anterior"    
+        previouspagelore: 
+            - "Pasar a la pagina anterior"
+        
+        cost-of-item: "El item cuesta %mineral% x%quantity%"
+        menu-item: "REDSTONE"
+        menu-name: "Ir al menu"
+        menu-lore: 
+            - "ir al menu principal"
+
+
+   
+    elytragui:
+        name: "&4&LCustom Elytra"
+        nextpageitem: "REDSTONE"
+        nextpagename: "Siguiente Pagina"
+        nextpagelore:
+            - "Pasar a la siguiente pagina"    
+        previouspageitem: "REDSTONE"
+        previouspagename: "Pagina anterior"    
+        previouspagelore: 
+            - "Pasar a la pagina anterior"
+        
+        cost-of-item: "El item cuesta %mineral% x%quantity%"
+        menu-item: "REDSTONE"
+        menu-name: "Ir al menu"
+        menu-lore: 
+            - "ir al menu principal"
+
 
     messages:
         insufficient-ore: "No tienes ores suficientes"
         reload-config: "&4&L La configuracion fue reiniciada"
         insuficient-resources: "No tienes recursos suficientes para recibir este item"
         insuficient-permissions: "&4&LNo tienes permisos suficientes para ejecutar este comando"
-        item-not-exists: "El item no existe"
         mineral-not-exists: "El mineral %mineral% no existe"
         no-disponible-slot: "No hay espacio suficiente para realizar esta accion"
         received-item: "Recibiste correctamente el item %item%"

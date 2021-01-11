@@ -90,17 +90,17 @@ public class InventoryMenuGUI implements Listener {
 
 				} else if (e.getSlot() == 3) {
 					InventoryWeaponGUI inventoryWeapon = new InventoryWeaponGUI(instance);
-					inventoryWeapon.openWeaponGui(p);
+					inventoryWeapon.openWeaponGui(p, 1);
 					return;
 
 				} else if (e.getSlot() == 5) {
 					InventoryToolGUI inventoryTool = new InventoryToolGUI(instance);
-					inventoryTool.openToolGui(p);
+					inventoryTool.openToolGui(p, 1);
 					return;
 
 				} else if (e.getSlot() == 7) {
 					InventoryElytraGUI inventoryElytra = new InventoryElytraGUI(instance);
-					inventoryElytra.openElytraGui(p);
+					inventoryElytra.openElytraGui(p, 1);
 					return;
 
 				} else {

@@ -59,7 +59,7 @@ public class GiveCustommineralCmd implements CommandExecutor {
 			}
 
 			if (checker != 1) {
-				String msg = instance.getConfig().getString("config.messages.mineral-not-exist");
+				String msg = instance.getConfig().getString("config.messages.mineral-not-exists");
 				msg = msg.replaceAll("%mineral%", args[0]);
 				sender.sendMessage(Main.colorize(msg));
 				return true;
@@ -72,25 +72,33 @@ public class GiveCustommineralCmd implements CommandExecutor {
 			String materialName = instance.getConfig().getString("config.minerals." + key + ".name");
 			List<String> lore = instance.getConfig().getStringList("config.minerals." + key + ".lore");
 			String mineralId = instance.getConfig().getString("config.minerals." + key + ".itemid");
-			ItemStack item = new ItemStack(Material.valueOf(mineralId), Integer.parseInt(args[1]));
-			ItemMeta meta = item.getItemMeta();
-			meta.setCustomModelData(itemCustomModelData);
-			if (lore != null) {
-				meta.setLore(Main.colorize(lore));
-			}
-			if (materialName != null) {
-				meta.setDisplayName(Main.colorize(materialName));
-			}
-			item.setItemMeta(meta);
-			for (int i = 0; i <= 35; i++) {
-				if (tInv.getItem(i) == null) {
-					tInv.setItem(i, item);
-					return true;
+
+			try {
+				ItemStack item = new ItemStack(Material.valueOf(mineralId), Integer.parseInt(args[1]));
+				ItemMeta meta = item.getItemMeta();
+				meta.setCustomModelData(itemCustomModelData);
+				if (lore != null) {
+					meta.setLore(Main.colorize(lore));
 				}
+				if (materialName != null) {
+					meta.setDisplayName(Main.colorize(materialName));
+				}
+				item.setItemMeta(meta);
+				for (int i = 0; i <= 35; i++) {
+					if (tInv.getItem(i) == null) {
+						tInv.setItem(i, item);
+						return true;
+					}
+				}
+				String noSpaceMsg = instance.getConfig().getString("config.messages.no-disponible-slot");
+				sender.sendMessage(Main.colorize(noSpaceMsg));
+				return true;
+
+			} catch (Exception e) {
+				String msg = instance.getConfig().getString("config.messages.command-item-ussage");
+
+				sender.sendMessage(Main.colorize(msg));
 			}
-			String noSpaceMsg = instance.getConfig().getString("config.messages.no-disponible-slot");
-			sender.sendMessage(Main.colorize(noSpaceMsg));
-			return true;
 
 		} else if (sender instanceof ConsoleCommandSender) {
 			if (!(args.length > 2 && cmd.getName().equalsIgnoreCase("givecustommineral"))) {
@@ -130,27 +138,34 @@ public class GiveCustommineralCmd implements CommandExecutor {
 			String materialName = instance.getConfig().getString("config.minerals." + key + ".name");
 			List<String> lore = instance.getConfig().getStringList("config.minerals." + key + ".lore");
 			String mineralId = instance.getConfig().getString("config.minerals." + key + ".itemid");
-			ItemStack item = new ItemStack(Material.valueOf(mineralId), Integer.parseInt(args[1]));
-			ItemMeta meta = item.getItemMeta();
-			meta.setCustomModelData(itemCustomModelData);
-			if (lore != null) {
-				meta.setLore(Main.colorize(lore));
-			}
-			if (materialName != null) {
-				meta.setDisplayName(Main.colorize(materialName));
-			}
-			item.setItemMeta(meta);
-			for (int i = 0; i <= 35; i++) {
-				if (tInv.getItem(i) == null) {
-					tInv.setItem(i, item);
-					return true;
+			try {
+				ItemStack item = new ItemStack(Material.valueOf(mineralId), Integer.parseInt(args[1]));
+				ItemMeta meta = item.getItemMeta();
+				meta.setCustomModelData(itemCustomModelData);
+				if (lore != null) {
+					meta.setLore(Main.colorize(lore));
 				}
-			}
-			String noSpaceMsg = instance.getConfig().getString("config.messages.no-disponible-slot");
-			Bukkit.getConsoleSender().sendMessage(Main.colorize(noSpaceMsg));
-			return true;
-		}
+				if (materialName != null) {
+					meta.setDisplayName(Main.colorize(materialName));
+				}
+				item.setItemMeta(meta);
+				for (int i = 0; i <= 35; i++) {
+					if (tInv.getItem(i) == null) {
+						tInv.setItem(i, item);
+						return true;
+					}
+				}
+				String noSpaceMsg = instance.getConfig().getString("config.messages.no-disponible-slot");
+				Bukkit.getConsoleSender().sendMessage(Main.colorize(noSpaceMsg));
+				return true;
+			
+			} catch (Exception e) {
+				String msg = instance.getConfig().getString("config.messages.command-item-ussage");
+				Bukkit.getConsoleSender().sendMessage(Main.colorize(msg));
 
+			}
+			
+		}
 		return false;
 	}
 

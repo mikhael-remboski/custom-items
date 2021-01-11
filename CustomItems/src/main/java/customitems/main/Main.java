@@ -14,7 +14,10 @@ import customitems.commands.GiveCustommineralCmd;
 import customitems.commands.OpenGuiCmd;
 import customitems.commands.ReloadConfigCmd;
 import customitems.events.InventoryArmorGUI;
+import customitems.events.InventoryElytraGUI;
 import customitems.events.InventoryMenuGUI;
+import customitems.events.InventoryToolGUI;
+import customitems.events.InventoryWeaponGUI;
 
 public class Main extends JavaPlugin {
 	public static Main instance;
@@ -56,6 +59,9 @@ public class Main extends JavaPlugin {
 		PluginManager pm = getServer().getPluginManager();
 		pm.registerEvents(new InventoryMenuGUI(this), this);
 		pm.registerEvents(new InventoryArmorGUI(this), this);
+		pm.registerEvents(new InventoryWeaponGUI(this), this);
+		pm.registerEvents(new InventoryToolGUI(this), this);
+		pm.registerEvents(new InventoryElytraGUI(this), this);
 
 	}
 

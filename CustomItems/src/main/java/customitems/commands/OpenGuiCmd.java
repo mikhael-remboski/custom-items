@@ -57,21 +57,21 @@ public class OpenGuiCmd implements CommandExecutor {
 	private boolean toolGui(CommandSender sender) {
 		Player p = getPlayer(sender.getName());
 		InventoryToolGUI inventoryTool = new InventoryToolGUI(instance);
-		inventoryTool.openToolGui(p);
+		inventoryTool.openToolGui(p, 1);
 		return true;
 	}
 
 	private boolean weaponGui(CommandSender sender) {
 		Player p = getPlayer(sender.getName());
 		InventoryWeaponGUI inventoryWeapon = new InventoryWeaponGUI(instance);
-		inventoryWeapon.openWeaponGui(p);
+		inventoryWeapon.openWeaponGui(p, 1);
 		return true;
 	}
 
 	private boolean elytraGui(CommandSender sender) {
 		Player p = getPlayer(sender.getName());
 		InventoryElytraGUI inventoryElytra = new InventoryElytraGUI(instance);
-		inventoryElytra.openElytraGui(p);
+		inventoryElytra.openElytraGui(p, 1);
 		return true;
 	}
 

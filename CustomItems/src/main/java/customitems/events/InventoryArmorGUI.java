@@ -49,7 +49,20 @@ public class InventoryArmorGUI implements Listener {
 
 		nextPageItem.setItemMeta(nextPageItemMeta);
 		previousPageItem.setItemMeta(previousPageItemMeta);
-
+		
+		String menuItemType = instance.getConfig().getString("config.armorgui.menu-item");
+		String menuItemName = instance.getConfig().getString("config.armorgui.menu-name");
+		List<String> menuLore = instance.getConfig().getStringList("config.armorgui.menu-lore");
+		
+		ItemStack menuItem = new ItemStack(Material.valueOf(menuItemType.toUpperCase()));
+		ItemMeta menuMeta = menuItem.getItemMeta();
+		menuMeta.setDisplayName(Main.colorize(menuItemName));
+		menuMeta.setLore(Main.colorize(menuLore));
+		menuItem.setItemMeta(menuMeta);
+		
+		inventoryArmor.setItem(49, menuItem);
+		
+		
 		inventoryArmor.setItem(46, previousPageItem);
 		inventoryArmor.setItem(52, nextPageItem);
 
@@ -168,22 +181,31 @@ public class InventoryArmorGUI implements Listener {
 						}else if(e.getSlot() == 46) {
 							if(i == 1) {
 								e.setCancelled(true);
+								return;
 							}else {
 								i --;
 								InventoryArmorGUI armorGui = new InventoryArmorGUI(instance);
 								armorGui.openArmorGui(p, i);
+								return;
 							}
 							
 						}else if(e.getSlot() == 52) {
 							if(i == 49) {
 								e.setCancelled(true);
+								return;
 							}else {
 								i++;
 								InventoryArmorGUI armorGui = new InventoryArmorGUI(instance);
 								armorGui.openArmorGui(p, i);
+								return;
 							}
 							
 							
+						} else if (e.getSlot() == 49) {
+							e.setCancelled(true);
+							InventoryMenuGUI menuGui = new InventoryMenuGUI(instance);
+							menuGui.openMenuGui(p);
+							return;
 						}
 
 					}
